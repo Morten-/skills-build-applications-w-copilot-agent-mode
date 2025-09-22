@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
   const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
@@ -15,13 +14,28 @@ const Leaderboard = () => {
   }, [endpoint]);
 
   return (
-    <div>
-      <h2>Leaderboard</h2>
-      <ul>
-        {leaderboard.map((entry, idx) => (
-          <li key={idx}>{entry.team}: {entry.points} points</li>
-        ))}
-      </ul>
+    <div className="card mb-4">
+      <div className="card-body">
+        <h2 className="card-title text-success mb-4">Leaderboard</h2>
+        <div className="table-responsive">
+          <table className="table table-striped table-bordered">
+            <thead className="table-dark">
+              <tr>
+                <th>Team</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboard.map((entry, idx) => (
+                <tr key={idx}>
+                  <td>{entry.team}</td>
+                  <td>{entry.points}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
